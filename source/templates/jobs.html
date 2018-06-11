@@ -1,0 +1,25 @@
+
+<!doctype html>
+
+<html >
+
+    <head>
+
+        <meta charset="UTF-8">
+
+    </head>
+
+    <body>
+
+        <h1>Vagas disponíveis</h1>
+
+            <ul>
+                {% for job in jobs %}
+                    <li><a href="jobs/{{job.empresa}}">{{job.descricao}}</a></li>
+                {% endfor %}
+            </ul>
+
+    </body>
+
+</html>
+
