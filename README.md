@@ -12,6 +12,21 @@ vagas de estágio, summer, emprego...
 └── portalCEE
     ├── documentation           # Uso, guias e organização de arquivos.
     └── source                  # Diretório principal do código.
-        ├── static              #
-        └── templates           # Arquivos html, css...
+        ├── core                #
+        └── static              # Arquivos auxiliares para construção de páginas
+            ├── css                 # Configurações css
+            └── img                 # Imagens
+        └── templates           # Templates html para páginas
 ```
+
+
+## Dependências
+
+Para o correto funionamento do código algumas dependências são necessárias.
+
+- Flask
+- Flask-MySQLdb
+- Flask-WTF
+- WTForms
+- mysqlclient
+- passlib
