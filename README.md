@@ -37,6 +37,7 @@ Para o correto funionamento do código algumas dependências são necessárias.
 Após instalar todas as depêndencias, execute no terminal:
 
 ```sh
+$ cd source/
 $ python3 app.py
 ```
 
@@ -44,4 +45,6 @@ Em seguida abra em um navegador de sua preferência:
 
 ```http
 http://127.0.0.1:5000/
+ou
+http://localhost:5000/
 ```
