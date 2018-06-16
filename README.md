@@ -30,3 +30,18 @@ Para o correto funionamento do código algumas dependências são necessárias.
 - WTForms
 - mysqlclient
 - passlib
+
+
+## Execução
+
+Após instalar todas as depêndencias, execute no terminal:
+
+```sh
+$ python3 app.py
+```
+
+Em seguida abra em um navegador de sua preferência:
+
+```http
+http://127.0.0.1:5000/
+```
