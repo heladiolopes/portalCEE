@@ -141,12 +141,14 @@ def profile():
 
 
 @app.route('/jobs')
+@is_logged_in
 def jobs():
     return render_template("jobs.html", jobs=Jobs)
 
 
 # Página de cada vaga
 @app.route('/jobs/<string:empresa>')
+@is_logged_in
 def company(empresa):
     return render_template("company.html", empresa=empresa)
 

@@ -3,10 +3,28 @@
 {% block body %}
 
     <div class="jumbotron text-center">
-        <h1>Portal de Vagas CEE</h1>
-        <br/>
-        <br/>
+        <h1 class="display-4">Portal de Vagas CEE</h1>
+
+        <hr class="my-4">
+
         <img src="../static/img/ceelogo.png" style="max-width: 60%; height: auto;" alt="CEE">
+
+        <hr class="my-4">
+
+        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam imperdiet nisi lorem. Duis id tortor id ex
+            lobortis porta sed fermentum metus. Nunc blandit efficitur nunc. Aliquam posuere sapien egestas quam rhoncus
+            commodo. Etiam sodales nisl id erat rutrum, eget condimentum arcu ornare. Phasellus iaculis vehicula tellus
+            ac egestas. Maecenas elementum felis nec lorem sollicitudin, sit amet imperdiet ipsum scelerisque. Mauris
+            euismod malesuada arcu vel ullamcorper. Aenean ullamcorper congue tortor, ac auctor nibh sagittis vulputate.
+            Fusce volutpat tortor sed purus rhoncus dapibus. Phasellus vel neque et lectus sollicitudin lacinia a in
+            magna.</p>
+
+        <hr class="my-4">
+
+        {% if not session.logged_in %}
+            <a href="/register" class="btn btn-secondary btn-lg">Register</a>
+            <a href="/login" class="btn btn-dark btn-lg">Login</a>
+        {% endif %}
     </div>
 
 {% endblock %}

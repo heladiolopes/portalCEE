@@ -1,34 +1,41 @@
-<nav class="navbar navbar-default navbar-fixed">
+<nav class="navbar navbar-expand-md navbar-dark bg-dark mb-4">
+<!-- <nav class="navbar navbar-expand-md navbar-inverse mb-4"> -->
+
     <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar"
-                    aria-expanded="false" aria-controls="navbar">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">My Flask App</a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li><a href="/">Home</a></li>
-                {% if session.logged_in %}
-                    <li><a href="/profile">Profile</a></li>
-                    <li><a href="/jobs">Jobs</a></li>
 
-                {% endif %}
-            </ul>
+    <a class="navbar-brand" href="/">CEE</a>
+    
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
-            <ul class="nav navbar-nav navbar-right">
-                {% if session.logged_in %}
-                    <li><a href="/logout">Logout</a></li>
-                {% else %}
-                    <li><a href="/register">Register</a></li>
-                    <li><a href="/login">Login</a></li>
-                {% endif %}
+    <div class="collapse navbar-collapse" id="navbarCollapse">
 
-            </ul>
-        </div>
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home</a></li>
+            
+            {% if session.logged_in %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/profile">Profile</a></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/jobs">Jobs</a></li>
+            {% endif %}
+
+        </ul>
+
+        <ul class="nav navbar-nav navbar-right">
+            {% if session.logged_in %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/logout">Logout</a></li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="/register">Register</a></li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/login">Login</a></li>
+            {% endif %}
+        </ul>
+        
     </div>
+</div>
 </nav>
