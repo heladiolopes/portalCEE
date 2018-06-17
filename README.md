@@ -24,13 +24,18 @@ vagas de estágio, summer, emprego...
 
 Para o correto funionamento do código algumas dependências são necessárias.
 
-- Flask
-- Flask-MySQLdb
-- Flask-WTF
-- WTForms
+- flask
+- flask-MySQLdb
+- flask-WTF
+- wtforms
 - mysqlclient
 - passlib
 
+Para instalar as dependências, execute no terminal
+
+```sh
+$ sudo pip install nomeDaDependencia
+```
 
 ## Execução
 
@@ -43,8 +48,10 @@ $ python3 app.py
 
 Em seguida abra em um navegador de sua preferência:
 
-```http
+```
 http://127.0.0.1:5000/
+```
 ou
+```
 http://localhost:5000/
 ```
