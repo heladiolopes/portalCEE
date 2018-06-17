@@ -1,20 +1,10 @@
-<!doctype html>
+{% extends 'layout.html' %}
 
-<html>
+{% block body %}
 
-	<head>
-		<title>Perfil</title>
-		<meta charset="utf-8" />
-	</head>
-
-	<body>
-        <h1>Nome</h1>
-		<form>Curso</form>
-        <form>Ano</form>
-        <form>E-mail</form>
-        <form>LinkedIn</form>
-
-
-	</body>
-
-</html>
+    <h1>Usuário {{ session.username }}</h1>
+    <p>{{ session.f_name }} {{ session.l_name }}</p>
+    <p>{{ session.email }}</p>
+    <p>Curso: {{ session.course }}</p>
+    <p>Turma: {{ session.year }}</p>
+{% endblock %}

@@ -1,4 +1,15 @@
-from wtforms import Form, StringField, TextAreaField, PasswordField, validators, IntegerField, SelectField
+from wtforms import Form, StringField, PasswordField, validators, IntegerField, SelectField
+from wtforms.fields.html5 import EmailField
+
+
+cursos = [
+        ('aer', 'Engenharia Aeronáutica'),
+        ('aesp', 'Engenharia Aeroespacial'),
+        ('civil', 'Engenharia Civil-Aeronáuica'),
+        ('comp', 'Engenharia de Computaçãp'),
+        ('ele', 'Engenharia Eletrônica'),
+        ('mec', 'Engenharia Mecânica-Aeronáutica')
+    ]
 
 
 class RegisterForm(Form):
@@ -6,24 +17,20 @@ class RegisterForm(Form):
 
     last_name = StringField('Sobrenome', [validators.Length(min=1, max=70)])
 
-    email = StringField('Email', [validators.Length(min=6, max=80)])
+    email = EmailField('Email', [
+        validators.DataRequired(),
+        validators.Email(message="Email inválido")
+    ])
 
     username = StringField('Usuário', [validators.Length(min=4, max=25)])
 
     password = PasswordField('Senha', [
         validators.DataRequired(),
-        validators.EqualTo('confirm', message='Password do not match')
+        validators.EqualTo('confirm', message='Senhas não correspondem')
     ])
 
     confirm = PasswordField('Corfirmar senha')
 
-    course = SelectField('Curso', choices=[
-        ('aer', 'Engenharia Aeronáutica'),
-        ('aesp', 'Engenharia Aeroespacial'),
-        ('civil', 'Engenharia Civil-Aeronáuica'),
-        ('comp', 'Engenharia de Computaçãp'),
-        ('ele', 'Engenharia Eletrônica'),
-        ('mec', 'Engenharia Mecânica-Aeronáutica')
-    ])
+    course = SelectField('Curso', choices=cursos)
 
     year = IntegerField('Ano de Formatura', [validators.NumberRange(min=2015, max=2030)])

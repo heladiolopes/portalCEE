@@ -1,25 +1,13 @@
+{% extends "layout.html" %}
 
-<!doctype html>
+{% block body %}
 
-<html >
+    <h1>Vagas disponíveis</h1>
 
-    <head>
+    <ul>
+        {% for job in jobs %}
+            <li><a href="jobs/{{ job.empresa }}">{{ job.descricao }}</a></li>
+        {% endfor %}
+    </ul>
 
-        <meta charset="UTF-8">
-
-    </head>
-
-    <body>
-
-        <h1>Vagas disponíveis</h1>
-
-            <ul>
-                {% for job in jobs %}
-                    <li><a href="jobs/{{job.empresa}}">{{job.descricao}}</a></li>
-                {% endfor %}
-            </ul>
-
-    </body>
-
-</html>
-
+{% endblock %}
