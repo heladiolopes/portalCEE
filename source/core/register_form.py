@@ -18,7 +18,7 @@ class RegisterForm(Form):
     last_name = StringField('Sobrenome', [validators.Length(min=1, max=70)])
 
     email = EmailField('Email', [
-        validators.DataRequired(),
+        validators.DataRequired(message="Email inválido"),
         validators.Email(message="Email inválido")
     ])
 
