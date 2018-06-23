@@ -113,16 +113,16 @@ def login():
 def sendjob():
     form = JobForm(request.form)
     if request.method == 'POST' and form.validate():
-        name = form.name.data
-        job = form.job.data
-        yearInUniversity = form.yearInUniversity.data
+        title = form.title.data
+        local = form.local.data
+        email = form.email.data
         jobDescription = form.jobDescription.data
 
         # Create a cursor
         cur = mysql.connection.cursor()
 
         # execute
-        cur.execute("INSERT INTO companies(name, job, year_in_university, job_description) VALUES(%s, %s, %s, %s)", {name, job, yearInUniversity, jobDescription})
+        cur.execute("INSERT INTO companies(title, local, email, job_description) VALUES('{0}', '{1}', '{2}', '{3}')".format(title, local, email, jobDescription))
 
         # commit to DB
         mysql.connection.commit()
@@ -192,11 +192,11 @@ def company(empresa):
     cur = mysql.connection.cursor()
 
     # Get job
-    result = cur.execute("SELECT * FROM companies WHERE name = %s", [empresa])
+    result = cur.execute("SELECT * FROM companies WHERE local = %s", [empresa])
 
-    intern = cur.fetchone()
+    job = cur.fetchone()
 
-    return render_template("company.html", company=intern)
+    return render_template("company.html", company=job)
 
 
 if __name__ == '__main__':

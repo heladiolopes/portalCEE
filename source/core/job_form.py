@@ -1,10 +1,14 @@
-from wtforms import Form, StringField, PasswordField, validators, IntegerField, TextAreaField
+from wtforms import Form, StringField, validators, TextAreaField
+from wtforms.fields.html5 import EmailField
 
 class JobForm(Form):
-    name = StringField('Empresa', [validators.Length(min=1, max=30)])
+    title = StringField('Título da vaga', [validators.Length(min=1, max=30)])
 
-    job = TextAreaField('Vaga', [validators.Length(min=10)])
+    local = TextAreaField('Empresa', [validators.Length(min=4)])
 
-    yearInUniversity = TextAreaField('Ano de Formação', [validators.Length(min=3)])
+    email = EmailField('Email', [
+        validators.DataRequired(),
+        validators.Email(message="Email inválido")
+    ])
 
     jobDescription = TextAreaField('Descrição da vaga', [validators.Length(min=3)])

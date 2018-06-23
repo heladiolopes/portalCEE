@@ -11,8 +11,8 @@
         </tr>
         {% for intern in jobs %}
             <tr>
-                <td><a href = "jobs/{{intern.name}}">{{intern.job}}</a></td>
-                <td>{{intern.name}}</td>
+                <td><a href = "jobs/{{intern.local}}">{{intern.title}}</a></td>
+                <td>{{intern.local}}</td>
             </tr>
 
         {% endfor %}
