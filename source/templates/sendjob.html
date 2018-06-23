@@ -1,0 +1,36 @@
+{% extends "layout.html" %}
+
+{% block body %}
+
+
+    <div class="jumbotron">
+
+        <h1 class="text-center">Informações básicas</h1>
+        <hr>
+
+        {% from "includes/_formhelpers.html" import render_field %}
+
+        <form method="POST" action="" class="reg">
+
+            <div class="form-group">
+                {{ render_field(form.name, class="form-control", placeholder="Nome da Empresa") }}
+            </div>
+
+            <div class="form-group">
+                {{ render_field(form.job, class="form-control", placeholder="Título da Vaga") }}
+            </div>
+
+            <div class="form-group">
+                {{ render_field(form.yearInUniversity, class="form-control", placeholder="Candidatos a partir de que ano?") }}
+            </div>
+
+            <div class="form-group">
+                {{ render_field(form.jobDescription, class="form-control", placeholder="Descrição da Vaga") }}
+            </div>
+
+            <p><input type="submit" class="btn btn-primary" value="Enviar"></p>
+
+        </form>
+    </div>
+
+{% endblock %}

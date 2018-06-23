@@ -6,8 +6,7 @@ from functools import wraps
 
 # Dependências do código
 from source.core.register_form import RegisterForm
-from source.jobs import Jobs
-
+from source.core.job_form import JobForm
 
 app = Flask(__name__)
 app.secret_key = 'super motherfucker secret key'
@@ -15,15 +14,11 @@ app.secret_key = 'super motherfucker secret key'
 # Configuração MySQL
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = '070498'
+app.config['MYSQL_PASSWORD'] = 'esojladiv'
 app.config['MYSQL_DB'] = 'ceePortalDB'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 # init MYSQL
 mysql = MySQL(app)
-
-# Página do portal de vagas
-Jobs = Jobs()
-
 
 # Redirecionando para homepage
 @app.route('/')
@@ -113,6 +108,34 @@ def login():
     return render_template('login.html')
 
 
+# Add job
+@app.route('/sendjob', methods=['GET', 'POST'])
+def sendjob():
+    form = JobForm(request.form)
+    if request.method == 'POST' and form.validate():
+        name = form.name.data
+        job = form.job.data
+        yearInUniversity = form.yearInUniversity.data
+        jobDescription = form.jobDescription.data
+
+        # Create a cursor
+        cur = mysql.connection.cursor()
+
+        # execute
+        cur.execute("INSERT INTO companies(name, job, year_in_university, job_description) VALUES(%s, %s, %s, %s)", {name, job, yearInUniversity, jobDescription})
+
+        # commit to DB
+        mysql.connection.commit()
+
+        # Close connection
+        cur.close()
+
+        flash('Thank you to send your opportunity to ITA', 'success')
+
+        return redirect(url_for('index'))
+
+    return render_template('sendjob.html', form = form)
+
 # Check if user logged in
 def is_logged_in(f):
     @wraps(f)
@@ -139,18 +162,41 @@ def logout():
 def profile():
     return render_template('profile.html')
 
-
+# Show the available jobs
 @app.route('/jobs')
 @is_logged_in
 def jobs():
-    return render_template("jobs.html", jobs=Jobs)
+
+    # Create a cursor
+    cur = mysql.connection.cursor()
+
+    # Get jobs
+    result = cur.execute("SELECT * FROM companies")
+
+    Jobs = cur.fetchall()
+
+    if result > 0:
+        return render_template("jobs.html", jobs=Jobs)
+    else:
+        msg = 'There no jobs available right now'
+        return render_template("jobs.html", msg = msg)
+
+    cur.close()
 
 
-# Página de cada vaga
+# Show a specific job
 @app.route('/jobs/<string:empresa>')
 @is_logged_in
 def company(empresa):
-    return render_template("company.html", empresa=empresa)
+    # Create a cursor
+    cur = mysql.connection.cursor()
+
+    # Get job
+    result = cur.execute("SELECT * FROM companies WHERE name = %s", [empresa])
+
+    intern = cur.fetchone()
+
+    return render_template("company.html", company=intern)
 
 
 if __name__ == '__main__':

@@ -2,8 +2,12 @@
 
 {% block body %}
 
-   <h1>Empresa</h1>
+    <h1>Empresa: {{company.name}}</h1>
 
-        <p> Vaga da empresa, colocar uma imagem ou pdf aqui</p>
+    <p>Vaga: {{company.job}}</p>
+
+    <p>Para: {{company.year_in_university}}</p>
+
+    <p>Descrição: {{company.job_description}}</p>
 
 {% endblock %}
