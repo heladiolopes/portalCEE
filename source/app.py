@@ -15,8 +15,8 @@ app.secret_key = 'super motherfucker secret key'
 # Configuração MySQL
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = '070498'
-app.config['MYSQL_DB'] = 'ceePortalDB'
+app.config['MYSQL_PASSWORD'] = '#Beethoven1995'
+app.config['MYSQL_DB'] = 'ceeportaldb'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 # init MYSQL
 mysql = MySQL(app)
