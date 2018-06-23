@@ -171,7 +171,7 @@ def jobs():
     cur = mysql.connection.cursor()
 
     # Get jobs
-    result = cur.execute("SELECT * FROM companies")
+    result = cur.execute("SELECT * FROM companies ORDER BY register_date DESC")
 
     Jobs = cur.fetchall()
 
