@@ -1,13 +1,36 @@
 {% extends 'layout.html' %}
 
+<style>
+h1 { color: #7c795d; font-family: 'Trocchi', serif; font-size: 45px; font-weight: normal; line-height: 48px; margin: 0; }
+
+
+h2 { color: #7c795d; font-family: 'Source Sans Pro', sans-serif; font-size: 28px; font-weight: 400; line-height: 32px; margin: 0 0 24px; }
+
+
+.subheader { font-size: 26px; font-weight: 300; color: #ffcc66; margin: 0 0 24px; }
+
+
+p { color: #4c4a37; font-family: 'Source Sans Pro', sans-serif; font-size: 18px; line-height: 32px; margin: 0 0 24px; }
+
+
+a { color: #ff9900; background: #fff4a3; text-decoration: none; }
+
+
+a:hover { color: #ffcc66 }
+</style>
+
 {% block body %}
+    <br>
+    <p style = "color: #000000; font-family:  sans-serif; font-size: 40px; font-weight: bold; line-height: 48px; margin: 0;">{{company.title}}</p>
+    <subheader style = "font-size: 26px; font-weight: 300; color: #4c4a37; margin: 0 0 24px;">{{company.local}}</subheader>
+    <br>
+    <br>
 
-    <h1>Empresa: {{company.local}}</h1>
 
-    <p>Vaga: {{company.title}}</p>
+    <a style = "color: #000000; font-family: sans-serif; font-size: 16px; font-weight: bold">Enviar e-mail para</a>
+    <p style = "color: #4c4a37; font-family: 'Source Sans Pro', sans-serif; font-size: 14px; ">{{company.email}}</p>
 
-    <p>Contato: {{company.email}}</p>
-
-    <p>Descrição: {{company.job_description}}</p>
+    <a style = "color: #000000; font-family: sans-serif; font-size: 16px; font-weight: bold">Descrição da vaga e requisitos</a>
+    <p style = "color: #4c4a37; font-family: 'Source Sans Pro', sans-serif; font-size: 14px; ">{{company.job_description}}</p>
 
 {% endblock %}
