@@ -1,9 +1,18 @@
 {% extends 'layout.html' %}
 
 {% block body %}
+    <br>
+    <p style = "color: #000000; font-family:  sans-serif; font-size: 40px; font-weight: bold; line-height: 48px; margin: 0;">{{company.title}}</p>
+    <subheader style = "font-size: 26px; font-weight: 300; color: #4c4a37; margin: 0 0 24px;">{{company.local}}</subheader>
+    <br>
+    <br>
 
-   <h1>Empresa</h1>
 
-        <p> Vaga da empresa, colocar uma imagem ou pdf aqui</p>
+    <a style = "color: #000000; font-family: sans-serif; font-size: 16px; font-weight: bold">Enviar e-mail para</a>
+    <p style = "color: #4c4a37; font-family: 'Source Sans Pro', sans-serif; font-size: 14px; ">{{company.email}}</p>
+
+    <a style = "color: #000000; font-family: sans-serif; font-size: 16px; font-weight: bold">Descrição da vaga e requisitos</a>
+    <p style = "color: #4c4a37; font-family: 'Source Sans Pro', sans-serif; font-size: 14px; ">{{company.job_description}}</p>
 
 {% endblock %}
+

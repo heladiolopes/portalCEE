@@ -2,12 +2,22 @@
 
 {% block body %}
 
-    <h1>Vagas disponíveis</h1>
+    <h1>Oportunidades Disponíveis</h1>
 
-    <ul>
-        {% for job in jobs %}
-            <li><a href="jobs/{{ job.empresa }}">{{ job.descricao }}</a></li>
+
+    <br>
+    <table class = "table table-striped">
+        <tr>
+            <th>Vaga</th>
+            <th>Empresa</th>
+        </tr>
+        {% for intern in jobs %}
+            <tr>
+                <td><a href = "jobs/{{intern.local}}">{{intern.title}}</a></td>
+                <td>{{intern.local}}</td>
+            </tr>
+
         {% endfor %}
-    </ul>
+    </table>
 
 {% endblock %}

@@ -4,4 +4,5 @@ CREATE DATABASE ceePortalDB;
 USE ceePortalDB;
 
 CREATE TABLE users(id INT(20) AUTO_INCREMENT PRIMARY KEY, first_name VARCHAR(30), last_name VARCHAR(70), email VARCHAR(100), username VARCHAR(30), password VARCHAR(100), course VARCHAR(10), year INT(10), register_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP);
+CREATE TABLE companies(title varchar(30), local text, email varchar(30), job_description text, register_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP PRIMARY KEY);
 
