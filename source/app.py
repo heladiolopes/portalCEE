@@ -5,7 +5,7 @@ from passlib.hash import sha256_crypt
 from functools import wraps
 
 # Dependências do código
-from source.core.register_form import RegisterForm
+from source.core.register_form import RegisterForm, cursos
 from source.jobs import Jobs
 
 
@@ -97,7 +97,10 @@ def login():
                 session['l_name'] = data['last_name']
                 session['email'] = data['email']
                 session['username'] = data['username']
-                session['course'] = data['course']
+                for c in cursos:
+                    if c[0] == data['course']:
+                        session['course'] = c[1]
+
                 session['year'] = data['year']
 
                 flash('You are now logged in', 'success')
@@ -154,4 +157,4 @@ def company(empresa):
 
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='192.168.0.83')
