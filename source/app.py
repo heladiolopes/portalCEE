@@ -102,6 +102,7 @@ def login():
                         session['course'] = c[1]
 
                 session['year'] = data['year']
+                session['linkedin'] = 'www.facebook.com'
 
                 flash('You are now logged in', 'success')
                 return redirect(url_for('profile'))
@@ -157,4 +158,4 @@ def company(empresa):
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='192.168.0.83')
+    app.run(debug=True)
