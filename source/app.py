@@ -3,11 +3,11 @@ from flask import Flask, render_template, flash, redirect, url_for, request, ses
 from flask_mysqldb import MySQL
 from passlib.hash import sha256_crypt
 from functools import wraps
+from flask_mail import Mail, Message
 
 # Dependências do código
 from source.core.register_form import RegisterForm
 from source.core.job_form import JobForm
-
 
 app = Flask(__name__)
 app.secret_key = 'super motherfucker secret key'
@@ -15,11 +15,22 @@ app.secret_key = 'super motherfucker secret key'
 # Configuração MySQL
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'esojladiv'
+app.config['MYSQL_PASSWORD'] = '070498'
 app.config['MYSQL_DB'] = 'ceePortalDB'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 # init MYSQL
 mysql = MySQL(app)
+
+# Configuração do E mail
+app.config.update(
+    MAIL_SERVER='smtp.gmail.com',
+    MAIL_PORT=465,
+    MAIL_USE_SSL=True,
+    MAIL_USERNAME='ceeportalces22@gmail.com',
+    MAIL_PASSWORD='ceeportal123',
+)
+
+mail = Mail(app)
 
 
 # Redirecionando para homepage
@@ -45,15 +56,32 @@ def register():
         username = form.username.data
         password = sha256_crypt.encrypt(str(form.password.data))
         course = form.course.data
+        linkedin = form.linkedIn.data
         year = form.year.data
 
         # Create cursor
         cur = mysql.connection.cursor()
 
+        # Checking if email already exists
+        if cur.execute("SELECT * FROM users WHERE email = '{0}'".format(email)) > 0:
+            flash('Email already registered.', 'danger')
+            return redirect(url_for('register'))
+
+        # Sending email
+        msg = mail.send_message(
+            'Confirmação',
+            sender='ceeportalces22@gmail.com',
+            recipients=[email],
+            html="<h4>Confirmação de cadastro</h4>"
+                 "<hr>"
+                 "<p>Olá {0},</p>"
+                 "<p>Seu cadastro foi realizado com sucesso!</p>".format(first)
+        )
+
         # Execute query
         cur.execute(
-            "INSERT INTO users(first_name, last_name, email, username, password, course, year) VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', {6})".format(
-                first, last, email, username, password, course, year))
+            "INSERT INTO users(first_name, last_name, email, username, password, course, year, linkedin) VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}', {6}, '{7}')".format(
+                first, last, email, username, password, course, year, linkedin))
 
         # Commit to DB
         mysql.connection.commit()
@@ -95,6 +123,7 @@ def login():
                 session['email'] = data['email']
                 session['username'] = data['username']
                 session['course'] = data['course']
+                session['linkedin'] = data['linkedin']
                 session['year'] = data['year']
 
                 flash('You are now logged in', 'success')
@@ -108,6 +137,7 @@ def login():
             return render_template('login.html', error=error)
 
     return render_template('login.html')
+
 
 # Add job
 @app.route('/sendjob', methods=['GET', 'POST'])
@@ -123,7 +153,9 @@ def sendjob():
         cur = mysql.connection.cursor()
 
         # execute
-        cur.execute("INSERT INTO companies(title, local, email, job_description) VALUES('{0}', '{1}', '{2}', '{3}')".format(title, local, email, jobDescription))
+        cur.execute(
+            "INSERT INTO companies(title, local, email, job_description) VALUES('{0}', '{1}', '{2}', '{3}')".format(
+                title, local, email, jobDescription))
 
         # commit to DB
         mysql.connection.commit()
@@ -135,9 +167,7 @@ def sendjob():
 
         return redirect(url_for('index'))
 
-    return render_template('sendjob.html', form = form)
-
-
+    return render_template('sendjob.html', form=form)
 
 
 # Check if user logged in
@@ -149,6 +179,7 @@ def is_logged_in(f):
         else:
             flash('Unauthorized, Please login', 'danger')
             return redirect(url_for('login'))
+
     return wrap
 
 
@@ -171,7 +202,6 @@ def profile():
 @app.route('/jobs')
 @is_logged_in
 def jobs():
-
     # Create a cursor
     cur = mysql.connection.cursor()
 
@@ -184,7 +214,7 @@ def jobs():
         return render_template("jobs.html", jobs=Jobs)
     else:
         msg = 'There no jobs available right now'
-        return render_template("jobs.html", msg = msg)
+        return render_template("jobs.html", msg=msg)
 
     cur.close()
 

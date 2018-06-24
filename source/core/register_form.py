@@ -1,12 +1,12 @@
 from wtforms import Form, StringField, PasswordField, validators, IntegerField, SelectField
-from wtforms.fields.html5 import EmailField
+from wtforms.fields.html5 import EmailField, URLField
 
 
 cursos = [
         ('aer', 'Engenharia Aeronáutica'),
         ('aesp', 'Engenharia Aeroespacial'),
         ('civil', 'Engenharia Civil-Aeronáuica'),
-        ('comp', 'Engenharia de Computaçãp'),
+        ('comp', 'Engenharia de Computação'),
         ('ele', 'Engenharia Eletrônica'),
         ('mec', 'Engenharia Mecânica-Aeronáutica')
     ]
@@ -32,5 +32,7 @@ class RegisterForm(Form):
     confirm = PasswordField('Corfirmar senha')
 
     course = SelectField('Curso', choices=cursos)
+
+    linkedIn = URLField('LinkedIn')
 
     year = IntegerField('Ano de Formatura', [validators.NumberRange(min=2015, max=2030)])
