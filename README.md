@@ -30,6 +30,7 @@ Para o correto funionamento do código algumas dependências são necessárias.
 - wtforms
 - mysqlclient
 - passlib
+- flask-Mail
 
 Para instalar as dependências, execute no terminal
 
