@@ -15,7 +15,7 @@ app.secret_key = 'super motherfucker secret key'
 # Configuração MySQL
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = '070498'
+app.config['MYSQL_PASSWORD'] = 'esojladiv'
 app.config['MYSQL_DB'] = 'ceePortalDB'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 # init MYSQL
@@ -209,7 +209,7 @@ def jobs():
     cur = mysql.connection.cursor()
 
     # Get jobs
-    result = cur.execute("SELECT * FROM companies ORDER BY register_date DESC")
+    result = cur.execute("SELECT * FROM companies ORDER BY register_date ASC")
 
     Jobs = cur.fetchall()
 
@@ -223,14 +223,14 @@ def jobs():
 
 
 # Show a specific job
-@app.route('/jobs/<string:empresa>')
+@app.route('/jobs/<string:vaga>')
 @is_logged_in
-def company(empresa):
+def company(vaga):
     # Create a cursor
     cur = mysql.connection.cursor()
 
     # Get job
-    result = cur.execute("SELECT * FROM companies WHERE local = %s", [empresa])
+    result = cur.execute("SELECT * FROM companies WHERE title = %s", [vaga])
 
     job = cur.fetchone()
 
@@ -238,4 +238,4 @@ def company(empresa):
 
 
 if __name__ == '__main__':
-    app.run(debug=True, host='192.168.0.81')
+    app.run(debug=True )
