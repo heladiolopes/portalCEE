@@ -28,6 +28,10 @@
                 {{ render_field(form.jobDescription, class="form-control", placeholder="Descrição da vaga e requisitos") }}
             </div>
 
+            <script>
+                CKEDITOR.replace('jobDescription');
+            </script>
+
             <p><input type="submit" class="btn btn-primary" value="Enviar"></p>
 
         </form>
