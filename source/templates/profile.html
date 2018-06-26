@@ -1,11 +1,21 @@
 {% extends 'layout.html' %}
 
 {% block body %}
-
-    <h1>Usuário {{ session.username }}</h1>
-    <p>{{ session.f_name }} {{ session.l_name }}</p>
-    <p>{{ session.email }}</p>
-    <p>Curso: {{ session.course }}</p>
-    <p>Turma: {{ session.year }}</p>
-    <p>LinkedIn: {{ session.linkedin }}</p>
+<div class="jumbotron text-center">
+    <h1>{{ session.f_name }} {{ session.l_name }}</h1>
+    <hr>
+    <br>
+    <div class="row">
+        <div class="col-sm-6 text-left">
+            <p>Usuário: {{ session.username }}</p>
+            <p>E-mail: {{ session.email }}</p>
+            <p>Curso: {{ session.course }}</p>
+            <p>Turma: {{ session.year }}</p>
+            <p>LinkedIn: <a href="{{session.linkedin}}">{{session.linkedin}}</a></p>
+        </div>
+        <div class="col-sm-6">
+            <iframe src="https://calendar.google.com/calendar/embed?showPrint=0&amp;showTabs=0&amp;showCalendars=0&amp;showTz=0&amp;height=300&amp;wkst=1&amp;bgcolor=%23ffff33&amp;src=ceeportalces22%40gmail.com&amp;color=%231B887A&amp;ctz=America%2FSao_Paulo" style="border:solid 3px #777; border-radius:10px; padding:5px" width="400" height="300" frameborder="0" scrolling="no"></iframe>
+        </div>
+    </div>
+</div>
 {% endblock %}

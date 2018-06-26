@@ -6,7 +6,7 @@ from functools import wraps
 from flask_mail import Mail, Message
 
 # Dependências do código
-from source.core.register_form import RegisterForm
+from source.core.register_form import RegisterForm, cursos
 from source.core.job_form import JobForm
 
 app = Flask(__name__)
@@ -122,7 +122,10 @@ def login():
                 session['l_name'] = data['last_name']
                 session['email'] = data['email']
                 session['username'] = data['username']
-                session['course'] = data['course']
+                for c in cursos:
+                    if c[0] == data['course']:
+                        session['course'] = c[1]
+
                 session['linkedin'] = data['linkedin']
                 session['year'] = data['year']
 
