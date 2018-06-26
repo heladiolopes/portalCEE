@@ -5,7 +5,7 @@ from wtforms.fields.html5 import EmailField
 class JobForm(Form):
     title = StringField('Título da vaga', [validators.Length(min=1, max=70)])
 
-    local = TextAreaField('Empresa', [validators.Length(min=4)])
+    local = TextAreaField('Empresa', [validators.Length(min=1, max=30)])
 
     email = EmailField('Email', [
         validators.DataRequired(),
