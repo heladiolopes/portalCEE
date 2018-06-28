@@ -15,7 +15,7 @@ app.secret_key = 'super motherfucker secret key'
 # Configuração MySQL
 app.config['MYSQL_HOST'] = 'localhost'
 app.config['MYSQL_USER'] = 'root'
-app.config['MYSQL_PASSWORD'] = 'esojladiv'
+app.config['MYSQL_PASSWORD'] = '070498'
 app.config['MYSQL_DB'] = 'ceePortalDB'
 app.config['MYSQL_CURSORCLASS'] = 'DictCursor'
 # init MYSQL
@@ -238,4 +238,4 @@ def company(vaga):
 
 
 if __name__ == '__main__':
-    app.run(debug=True )
+    app.run(debug=True)
