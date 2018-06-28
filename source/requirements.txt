@@ -1,0 +1,7 @@
+flask
+flask-MySQLdb
+flask-WTF
+wtforms
+mysqlclient
+passlib
+flask-Mail
